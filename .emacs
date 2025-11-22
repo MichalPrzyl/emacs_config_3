@@ -87,3 +87,35 @@
 (require 'org-bullets)
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 
+
+
+;;;;; BASH ;;;;;;
+;; running bash on current line (with output in status line)
+(defun run-line-in-bash ()
+  "Run current line in bash."
+  (interactive)
+  (let ((line (thing-at-point 'line t)))
+    (shell-command line)))
+
+
+;; running bash on region (with output in new window)
+(defun run-region-bash-compilation ()
+  "Run selected region as bash script and show output in a compilation buffer."
+  (interactive)
+  (unless (use-region-p)
+    (error "No region selected"))
+  (let* ((code (buffer-substring-no-properties (region-beginning) (region-end)))
+         (temp-file (make-temp-file "emacs-bash-" nil ".sh")))
+    ;; Zapisz zaznaczony kod do tymczasowego pliku
+    (with-temp-file temp-file
+      (insert "#!/usr/bin/env bash\n")
+      (insert code))
+
+    ;; Nadaj prawa wykonywalne
+    (set-file-modes temp-file #o755)
+
+    ;; Uruchom w compilation-mode
+    (compile temp-file)))
+
+(global-set-key (kbd "C-c l") 'run-line-in-bash)
+(global-set-key (kbd "C-c w") 'run-region-bash-compilation)
