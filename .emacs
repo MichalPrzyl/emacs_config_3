@@ -19,6 +19,9 @@
 (setq visible-bell t)
 (setq ring-bell-function 'ignore)
 
+(setq org-confirm-babel-evaluate nil)
+ 
+
 ; czcionki
 (set-face-attribute 'default nil :family "DejaVu Sans Mono" :height 140)
 
@@ -120,3 +123,6 @@
 (global-set-key (kbd "C-c l") 'run-line-in-bash)
 (global-set-key (kbd "C-c w") 'run-region-bash-compilation)
 
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((shell . t)))
