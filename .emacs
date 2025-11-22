@@ -16,6 +16,8 @@
 (global-display-line-numbers-mode)
 (setq auto-save-default nil)
 (setq auto-save-list-file-prefix nil) ;; nawet nie zapisuj listy auto-save
+(setq visible-bell t)
+(setq ring-bell-function 'ignore)
 
 ; czcionki
 (set-face-attribute 'default nil :family "DejaVu Sans Mono" :height 140)
@@ -61,7 +63,7 @@
   :init
   (vertico-mode))
 
-n
+
 ;; Marginalia: opisy przy wynikach (np. typ pliku, tryb bufora)
 (use-package marginalia
   :ensure t
@@ -84,3 +86,4 @@ n
 (require 'org)
 (require 'org-bullets)
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+
