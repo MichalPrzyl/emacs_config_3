@@ -128,3 +128,6 @@
  '((shell . t)))
 
 (add-hook 'window-setup-hook 'toggle-frame-fullscreen)
+
+;; multiple cursor keybginding
+(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
