@@ -130,4 +130,10 @@
 (add-hook 'window-setup-hook 'toggle-frame-fullscreen)
 
 ;; multiple cursor keybginding
-(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+(use-package multiple-cursors
+  :bind (("C-S-c C-S-c" . mc/edit-lines)
+         ("C->"         . mc/mark-next-like-this)
+         ("C-<"         . mc/mark-previous-like-this)
+         ("C-c C-<"     . mc/mark-all-like-this)
+         ("M-S-<down>"  . mc/mark-next-lines)
+         ("M-S-<up>"    . mc/mark-previous-lines)))
