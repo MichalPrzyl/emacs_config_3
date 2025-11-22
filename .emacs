@@ -119,3 +119,4 @@
 
 (global-set-key (kbd "C-c l") 'run-line-in-bash)
 (global-set-key (kbd "C-c w") 'run-region-bash-compilation)
+
